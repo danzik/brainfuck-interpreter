@@ -18,7 +18,7 @@ public class BrainFuckCompiler implements Compiler {
         if (program == null || program.isEmpty()) throw new IllegalArgumentException("IAE");
         char[] commands = program.toCharArray();
         List<Command> result = compileAndGetCommands(commands);
-        optimiseJumps(result);
+        validateBrainfuckCycleCommands(result);
         return result;
     }
 
@@ -49,7 +49,7 @@ public class BrainFuckCompiler implements Compiler {
         return listCommands;
     }
 
-    private void optimiseJumps(List<Command> commands) {
+    private void validateBrainfuckCycleCommands(List<Command> commands) {
         int counter = 0;
         while (counter < commands.size()) {
 
